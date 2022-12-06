@@ -33,6 +33,11 @@ for (const file of eventFiles) {
     client.on(event.name, (...args) => event.execute(...args));
   }
 }
+client.on("interactionCreate", (args) => {
+  console.log(
+    `${args.user.username} used command ${args.commandName} in channel  ${args.channel.name} `
+  );
+});
 
 deployCommands();
 client.login(token);
