@@ -19,7 +19,10 @@ const weatherMappings = {
   thunderstorm: { color: "#cfc057", emoji: ":thunder_cloud_rain:" },
   mist: { color: "#ffffff", emoji: ":fog:" },
   "few clouds": { color: "#a7a7a7", emoji: ":cloud:" },
+
 };
+
+const defaultMapping = { color: "#000000", emoji: ":cloud:" }
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -48,7 +51,7 @@ module.exports = {
     const { icon, main, description } = weatherData.weather[0];
     const { name, main: temps } = weatherData;
     const { speed } = weatherData.wind;
-    const { color, emoji } = weatherMappings[description.toLowerCase()];
+    const { color, emoji } = weatherMappings[description.toLowerCase()] ?? defaultMapping;
     const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     const exampleEmbed = new EmbedBuilder()
       .setColor(color)
